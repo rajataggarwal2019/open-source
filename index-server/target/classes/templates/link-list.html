@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="Razik - Index Server" name="description"/>
+        <meta http-equiv="Content-Security-Policy">
+        <title>Razik - Index Server</title>
+        <style>
+            body {
+                padding-left: 0.8rem;
+            }
+            td {
+                padding: 0.6rem;
+            }
+            tr:nth-child(odd) {
+                background-color: #e0e0e0;
+            }
+            tr:nth-child(even) {
+                background-color: #bdbdbd;
+            }
+        </style>
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <h1 th:text=" ${'/index/'+id}"></h1>
+        <table>
+            <tbody>
+                <tr th:if="${id != 1}">
+                    <td>
+                        <a th:href="${parent.url}" th:text="${parent.name}"/>
+                    </td>
+                </tr>
+                <tr th:each="child : ${children}">
+                    <td>
+                        <a th:href="${child.url}" th:text="${child.name}"/>
+                    </td>
+                    <td th:text="${child.createdAt}"></td>
+                    <td th:text="${child.updatedAt}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <p>note: alt+click on the node link to download</p>
+    </body>
+</html>
